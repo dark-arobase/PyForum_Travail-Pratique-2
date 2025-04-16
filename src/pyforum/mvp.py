@@ -1,4 +1,5 @@
 # Importation des classes nécessaires
+import csv
 from time import sleep
 from pyforum.bd import BD
 
@@ -32,12 +33,20 @@ def main():
             # Voici un exemple trivial de création d'un utilisateur. Vous devez le bonifier,
             # car il ne prend en compte que le nom d'utilisateur.
             username = input("Entrez le nom d'utilisateur: ")
-            utilisateur = {'username': username}
+            email = input("Entrez l'adresse courriel: ")
+            mot_de_passe = input("Entrez un mot de passe: ")
             # TODO: Ajouter ici la logique pour demander des informations à l'utilisateur
+
+            utilisateur = {
+                'nom_utilisateur': username,
+                'email': email,
+                'mot_de_passe': mot_de_passe
+            }
 
             # Le **utilisateur est une syntaxe Python pour déballer un dictionnaire.
             # C'est à dire que les clés du dictionnaire deviennent des arguments nommés.
             db.creer_utilisateur(**utilisateur)
+            print("Utilisateur créé avec succès!")
 
         elif choix == '2':
             # Créer un forum

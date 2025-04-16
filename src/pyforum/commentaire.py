@@ -11,3 +11,6 @@ class Commentaire():
     def __str__(self):
         return f"Commentaire(id={self.id}, id_auteur='{self.id_auteur}', contenu_commentaire='{self.contenu_commentaire}', id_publication='{self.id_publication}')"
         
+        
+    def __str__(self):
+        return f"Commentaire de {self.auteur_id} : {self.contenu}"
