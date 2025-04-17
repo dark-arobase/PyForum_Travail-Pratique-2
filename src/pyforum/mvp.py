@@ -1,7 +1,7 @@
 # Importation des classes nécessaires
 import csv
 from time import sleep
-from pyforum.bd import BD
+from bd import BD
 
 
 def afficher_menu():
