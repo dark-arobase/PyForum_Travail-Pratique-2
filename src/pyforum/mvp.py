@@ -1,11 +1,7 @@
-# Importation des classes nécessaires
-import csv
 from time import sleep
 from bd import BD
 
-
 def afficher_menu():
-    """Affiche les options du menu."""
     print("\n---- Menu ----")
     print("1. Créer un utilisateur")
     print("2. Créer un forum")
@@ -14,70 +10,55 @@ def afficher_menu():
     print("5. Joindre un forum")
     print("6. Quitter")
 
-
 def main():
-
-    # Initialisation de la base de données
-    db = BD()
-
+    bd = BD()
     while True:
         afficher_menu()
-
-        # Demander à l'utilisateur de choisir une option
         choix = input("Choisissez une option (1-6): ")
 
         if choix == '1':
-            # Créer un utilisateur
-            print("\nCréation d'un utilisateur...")
-
-            # Voici un exemple trivial de création d'un utilisateur. Vous devez le bonifier,
-            # car il ne prend en compte que le nom d'utilisateur.
-            username = input("Entrez le nom d'utilisateur: ")
-            email = input("Entrez l'adresse courriel: ")
-            mot_de_passe = input("Entrez un mot de passe: ")
-            # TODO: Ajouter ici la logique pour demander des informations à l'utilisateur
-
-            utilisateur = {
-                'nom_utilisateur': username,
-                'email': email,
-                'mot_de_passe': mot_de_passe
-            }
-
-            # Le **utilisateur est une syntaxe Python pour déballer un dictionnaire.
-            # C'est à dire que les clés du dictionnaire deviennent des arguments nommés.
-            db.creer_utilisateur(**utilisateur)
-            print("Utilisateur créé avec succès!")
+            username = input("Nom d'utilisateur: ")
+            courriel = input("Courriel: ")
+            mot_de_passe = input("Mot de passe: ")
+            bd.creer_utilisateur(username, courriel, mot_de_passe)
 
         elif choix == '2':
-            # Créer un forum
-            print("\nCréation d'un forum...")
-            # TODO: Ajouter ici la logique pour demander des informations à l'utilisateur
-            # TODO: Ajouter l'appel à la base de donnée pour créer le forum
+            nom = input("Nom du forum: ")
+            desc = input("Description (facultatif): ")
+            bd.creer_forum(nom, desc)
 
         elif choix == '3':
-            # Créer une publication
-            print("\nCréation d'une publication...")
-            # TODO: Ajouter ici la logique pour demander des informations à l'utilisateur
-            # TODO: Ajouter l'appel à la base de donnée pour créer la publication
+            titre = input("Titre: ")
+            contenu = input("Contenu: ")
+            auteur = input("Nom d'utilisateur de l'auteur: ")
+            forum = input("Nom du forum: ")
+            u = bd.obtenir_utilisateur_par_nom(auteur)
+            f = bd.obtenir_forum_par_nom(forum)
+            if u and f:
+                bd.creer_publication(titre, contenu, u.id, f.id)
+            else:
+                print("Auteur ou forum introuvable.")
 
         elif choix == '4':
-            # Ajouter un commentaire
-            print("\nAjouter un commentaire...")
-            # TODO: Ajouter ici la logique pour demander des informations à l'utilisateur
-            # TODO: Ajouter l'appel à la base de donnée pour créer le commentaire
+            contenu = input("Contenu du commentaire: ")
+            auteur = input("Nom d'utilisateur de l'auteur: ")
+            titre_pub = input("Titre de la publication: ")
+            u = bd.obtenir_utilisateur_par_nom(auteur)
+            p = next((p for p in bd.publications if p.titre == titre_pub), None)
+            if u and p:
+                bd.creer_commentaire(contenu, u.id, p.id)
+            else:
+                print("Auteur ou publication introuvable.")
 
         elif choix == '5':
-            # Joindre un forum
-            print("\nJoindre un forum...")
-            # TODO: Ajouter ici la logique pour demander des informations à l'utilisateur
-            # TODO: Ajouter les appels à la base de donnée pour ajouter l'utilisateur au forum
+            utilisateur = input("Nom d'utilisateur: ")
+            forum = input("Nom du forum à joindre: ")
+            bd.joindre_forum(utilisateur, forum)
 
         elif choix == '6':
-            # Quitter le programme
             print("\nMerci d'avoir utilisé PyForum. À bientôt!")
             break
-
         else:
             print("Option invalide. Veuillez essayer à nouveau.")
 
-        sleep(1)  # Pause de 1 secondes pour rendre l'interface plus agréable
+        sleep(1)
