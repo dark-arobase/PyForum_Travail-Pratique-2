@@ -1,12 +1,9 @@
-class Forum():
-
-    def __init__(self, id, username, description,liste_publications):
-        # TODO: Ajouter les autres attributs nécessaires
+class Forum:
+    def __init__(self, id, nom, description=""):
         self.id = id
-        self.username = username
+        self.nom = nom
         self.description = description
-        self.liste_publications = liste_publications
+        self.publications = []
 
     def __str__(self):
-        return f"Utilisateur(id={self.id}, username='{self.username}')"
-    
+        return f"Forum({self.id}, {self.nom})"
