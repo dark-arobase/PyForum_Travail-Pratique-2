@@ -1,20 +1,20 @@
 [
   {
     "id": 1,
-    "titre": "toto",
-    "contenu": "eoj",
-    "date_creation": "2025-04-25T15:41:25.465842",
+    "titre": "dsk",
+    "contenu": "derien",
+    "date_creation": "2025-04-25T16:41:55.653315",
     "id_auteur": 3,
-    "id_forum": 1,
+    "id_forum": 2,
     "commentaires": []
   },
   {
     "id": 2,
-    "titre": "po",
-    "contenu": "kungfu",
-    "date_creation": "2025-04-25T15:48:37.107387",
+    "titre": "derien",
+    "contenu": "dsk",
+    "date_creation": "2025-04-25T16:43:32.298554",
     "id_auteur": 3,
-    "id_forum": 1,
+    "id_forum": 4,
     "commentaires": []
   }
 ]

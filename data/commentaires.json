@@ -4,5 +4,11 @@
     "id_auteur": 4,
     "contenu": "insulte",
     "id_publication": 1
+  },
+  {
+    "id": 2,
+    "id_auteur": 3,
+    "contenu": "sjfdoijaodaodjaoijd",
+    "id_publication": 2
   }
 ]

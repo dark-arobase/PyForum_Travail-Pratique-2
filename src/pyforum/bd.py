@@ -28,6 +28,18 @@ class BD:
 
     def charger_donnees(self):
         try:
+            with open(f"{self.chemin_data}/forum.csv", newline="", encoding="utf-8") as f:
+                reader = csv.DictReader(f)
+                self.forums = []
+                for row in reader:
+                    forum = Forum(int(row["id"]), row["nom"], row["description"])
+                    if "publications" in row and row["publications"]:
+                        forum.publications = list(map(int, row["publications"].split(";")))
+                    self.forums.append(forum)
+        except:
+            self.forums = []
+
+        try:
             with open(f"{self.chemin_data}/utilisateur.csv", newline="", encoding="utf-8") as f:
                 reader = csv.DictReader(f)
                 self.utilisateurs = [
@@ -36,16 +48,6 @@ class BD:
                 ]
         except:
             self.utilisateurs = []
-
-        try:
-            with open(f"{self.chemin_data}/forum.csv", newline="", encoding="utf-8") as f:
-                reader = csv.DictReader(f)
-                self.forums = [
-                    Forum(int(row["id"]), row["nom"], row["description"])
-                    for row in reader
-                ]
-        except:
-            self.forums = []
 
         try:
             with open(f"{self.chemin_data}/publications.json", "r") as f:
@@ -67,13 +69,13 @@ class BD:
                 noms_forums = [f.nom for f in self.forums if f.id in u.forums]
                 writer.writerow([u.id, u.username, u.courriel, u.mot_de_passe, ";".join(noms_forums)])
 
-
     def sauvegarder_forums(self):
         with open(f"{self.chemin_data}/forum.csv", "w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
-            writer.writerow(["id", "nom", "description"])
+            writer.writerow(["id", "nom", "description", "publications"])
             for forum in self.forums:
-                writer.writerow([forum.id, forum.nom, forum.description])
+                publications_str = ";".join(str(pub_id) for pub_id in forum.publications)
+                writer.writerow([forum.id, forum.nom, forum.description, publications_str])
 
     def sauvegarder(self):
         self.sauvegarder_utilisateurs()
@@ -108,6 +110,11 @@ class BD:
         date = datetime.now().isoformat()
         p = Publication(new_id, titre, contenu, date, id_auteur, id_forum)
         self.publications.append(p)
+
+        forum = self.obtenir_forum_par_id(id_forum)
+        if forum:
+            forum.publications.append(p.id)
+
         self.sauvegarder()
         print(f"Publication créée: {p}")
 
@@ -124,11 +131,9 @@ class BD:
 
         if u and f:
             u.rejoindre_forum(f.id)
-
             with open(os.path.join(self.chemin_data, "rejoindre_forum.csv"), "a", newline="") as f_join:
                 writer = csv.writer(f_join)
                 writer.writerow([u.id, u.username, f.id, f.nom])
-
             self.sauvegarder()
             print(f"{username} a rejoint le forum {forum_nom}.")
         else:
@@ -139,3 +144,6 @@ class BD:
 
     def obtenir_forum_par_nom(self, nom_forum):
         return next((f for f in self.forums if f.nom == nom_forum), None)
+
+    def obtenir_forum_par_id(self, id_forum):
+        return next((f for f in self.forums if f.id == id_forum), None)
