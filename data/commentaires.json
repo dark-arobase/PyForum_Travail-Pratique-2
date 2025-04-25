@@ -1,1 +1,8 @@
-[]
+[
+  {
+    "id": 1,
+    "id_auteur": 4,
+    "contenu": "insulte",
+    "id_publication": 1
+  }
+]

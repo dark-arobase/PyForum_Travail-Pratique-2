@@ -62,9 +62,11 @@ class BD:
     def sauvegarder_utilisateurs(self):
         with open(f"{self.chemin_data}/utilisateur.csv", "w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
-            writer.writerow(["id", "username", "courriel", "mot_de_passe"])
+            writer.writerow(["id", "username", "courriel", "mot_de_passe", "forums"])
             for u in self.utilisateurs:
-                writer.writerow([u.id, u.username, u.courriel, u.mot_de_passe])
+                noms_forums = [f.nom for f in self.forums if f.id in u.forums]
+                writer.writerow([u.id, u.username, u.courriel, u.mot_de_passe, ";".join(noms_forums)])
+
 
     def sauvegarder_forums(self):
         with open(f"{self.chemin_data}/forum.csv", "w", newline="", encoding="utf-8") as f:
