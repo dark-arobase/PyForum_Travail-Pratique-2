@@ -43,8 +43,21 @@ class BD:
             self.utilisateurs = []
 
         try:
+            
             with open("data/publications.json", "r", encoding="utf-8") as f:
-                self.publications = [Publication(**x) for x in json.load(f)]
+                    publications_data = json.load(f)
+                    self.publications = []
+            for pub_data in publications_data:
+                     p = Publication(
+                    pub_data["id"],
+                    pub_data["titre"],
+                    pub_data["contenu"],
+                    pub_data["date_creation"],
+                    pub_data["id_auteur"],
+                    pub_data["id_forum"]
+            )
+            p.commentaires = pub_data.get("commentaires", [])
+            self.publications.append(p)
         except:
             self.publications = []
 
@@ -115,8 +128,15 @@ class BD:
         new_id = len(self.commentaires) + 1
         c = Commentaire(new_id, id_auteur, contenu, id_publication)
         self.commentaires.append(c)
+
+        publication = self.obtenir_publication_par_id(id_publication)
+        if publication:
+            publication.commentaires.append(c.id)
+
+        
         self.sauvegarder()
         print(f"Commentaire ajouté: {c}")
+
 
     def joindre_forum(self, username, forum_nom):
         u = self.obtenir_utilisateur_par_nom(username)
@@ -140,3 +160,6 @@ class BD:
 
     def obtenir_forum_par_id(self, id_forum):
         return next((f for f in self.forums if f.id == id_forum), None)
+    
+    def obtenir_publication_par_id(self, id_publication):
+        return next((p for p in self.publications if p.id == id_publication), None)

@@ -16,5 +16,11 @@
     "id_auteur": 6,
     "contenu": "yo le tp est trop difficile",
     "id_publication": 1
+  },
+  {
+    "id": 4,
+    "id_auteur": 4,
+    "contenu": "jojo bizzare adventure",
+    "id_publication": 1
   }
 ]
