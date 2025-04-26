@@ -10,5 +10,11 @@
     "id_auteur": 3,
     "contenu": "sjfdoijaodaodjaoijd",
     "id_publication": 2
+  },
+  {
+    "id": 3,
+    "id_auteur": 6,
+    "contenu": "yo le tp est trop difficile",
+    "id_publication": 1
   }
 ]

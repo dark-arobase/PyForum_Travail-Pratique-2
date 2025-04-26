@@ -1,20 +1,11 @@
 [
   {
     "id": 1,
-    "titre": "dsk",
-    "contenu": "derien",
-    "date_creation": "2025-04-25T16:41:55.653315",
-    "id_auteur": 3,
-    "id_forum": 2,
-    "commentaires": []
-  },
-  {
-    "id": 2,
-    "titre": "derien",
-    "contenu": "dsk",
-    "date_creation": "2025-04-25T16:43:32.298554",
-    "id_auteur": 3,
-    "id_forum": 4,
+    "titre": "prog",
+    "contenu": "tp2 2c3",
+    "date_creation": "2025-04-25T23:18:23.863848",
+    "id_auteur": 6,
+    "id_forum": 5,
     "commentaires": []
   }
 ]
