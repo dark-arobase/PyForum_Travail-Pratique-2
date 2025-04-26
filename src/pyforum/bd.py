@@ -1,6 +1,5 @@
 import json
 import csv
-import os
 from utilisateur import Utilisateur
 from forum import Forum
 from publication import Publication
@@ -14,21 +13,15 @@ class BD:
         self.publications = []
         self.commentaires = []
 
-        racine = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-        self.chemin_data = os.path.join(racine, "data")
-        os.makedirs(self.chemin_data, exist_ok=True)
-
-        rejoindre_path = os.path.join(self.chemin_data, "rejoindre_forum.csv")
-        if not os.path.exists(rejoindre_path):
-            with open(rejoindre_path, "w", newline="") as f:
-                writer = csv.writer(f)
-                writer.writerow(["id_utilisateur", "nom_utilisateur", "id_forum", "nom_forum"])
+        with open("data/rejoindre_forum.csv", "w", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow(["id_utilisateur", "nom_utilisateur", "id_forum", "nom_forum"])
 
         self.charger_donnees()
 
     def charger_donnees(self):
         try:
-            with open(f"{self.chemin_data}/forum.csv", newline="", encoding="utf-8") as f:
+            with open("data/forum.csv", newline="", encoding="utf-8") as f:
                 reader = csv.DictReader(f)
                 self.forums = []
                 for row in reader:
@@ -40,29 +33,29 @@ class BD:
             self.forums = []
 
         try:
-            with open(f"{self.chemin_data}/utilisateur.csv", newline="", encoding="utf-8") as f:
+            with open("data/utilisateur.csv", newline="", encoding="utf-8") as f:
                 reader = csv.DictReader(f)
                 self.utilisateurs = [
-                    Utilisateur(int(row["id"]), row["username"], row["courriel"], row["mot_de_passe"])
+                    Utilisateur(int(row["id"]), row["username"], row["courriel"], row["mot_de_passe"], row["forums"].split(";") if row["forums"] else [])
                     for row in reader
                 ]
         except:
             self.utilisateurs = []
 
         try:
-            with open(f"{self.chemin_data}/publications.json", "r") as f:
+            with open("data/publications.json", "r", encoding="utf-8") as f:
                 self.publications = [Publication(**x) for x in json.load(f)]
         except:
             self.publications = []
 
         try:
-            with open(f"{self.chemin_data}/commentaires.json", "r") as f:
+            with open("data/commentaires.json", "r", encoding="utf-8") as f:
                 self.commentaires = [Commentaire(**x) for x in json.load(f)]
         except:
             self.commentaires = []
 
     def sauvegarder_utilisateurs(self):
-        with open(f"{self.chemin_data}/utilisateur.csv", "w", newline="", encoding="utf-8") as f:
+        with open("data/utilisateur.csv", "w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
             writer.writerow(["id", "username", "courriel", "mot_de_passe", "forums"])
             for u in self.utilisateurs:
@@ -70,19 +63,19 @@ class BD:
                 writer.writerow([u.id, u.username, u.courriel, u.mot_de_passe, ";".join(noms_forums)])
 
     def sauvegarder_forums(self):
-        with open(f"{self.chemin_data}/forum.csv", "w", newline="", encoding="utf-8") as f:
+        with open("data/forum.csv", "w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
             writer.writerow(["id", "nom", "description", "publications"])
             for forum in self.forums:
-                publications_str = ";".join(str(pub_id) for pub_id in forum.publications)
+                publications_str = ";".join(str(pub_id) for pub_id in forum.publications) 
                 writer.writerow([forum.id, forum.nom, forum.description, publications_str])
 
     def sauvegarder(self):
         self.sauvegarder_utilisateurs()
         self.sauvegarder_forums()
-        with open(f"{self.chemin_data}/publications.json", "w", encoding="utf-8") as f:
+        with open("data/publications.json", "w", encoding="utf-8") as f:
             json.dump([p.__dict__ for p in self.publications], f, ensure_ascii=False, indent=2)
-        with open(f"{self.chemin_data}/commentaires.json", "w", encoding="utf-8") as f:
+        with open("data/commentaires.json", "w", encoding="utf-8") as f:
             json.dump([c.__dict__ for c in self.commentaires], f, ensure_ascii=False, indent=2)
 
     def creer_utilisateur(self, username, courriel, mot_de_passe):
@@ -90,7 +83,7 @@ class BD:
             print("Nom d'utilisateur déjà pris.")
             return
         new_id = len(self.utilisateurs) + 1
-        u = Utilisateur(new_id, username, courriel, mot_de_passe)
+        u = Utilisateur(new_id, username, courriel, mot_de_passe,[])
         self.utilisateurs.append(u)
         self.sauvegarder()
         print(f"Utilisateur créé: {u}")
@@ -131,7 +124,7 @@ class BD:
 
         if u and f:
             u.rejoindre_forum(f.id)
-            with open(os.path.join(self.chemin_data, "rejoindre_forum.csv"), "a", newline="") as f_join:
+            with open("data/rejoindre_forum.csv", "a", newline="") as f_join:
                 writer = csv.writer(f_join)
                 writer.writerow([u.id, u.username, f.id, f.nom])
             self.sauvegarder()
