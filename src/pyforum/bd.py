@@ -82,12 +82,29 @@ class BD:
             for forum in self.forums:
                 publications_str = ";".join(str(pub_id) for pub_id in forum.publications) 
                 writer.writerow([forum.id, forum.nom, forum.description, publications_str])
-
     def sauvegarder(self):
         self.sauvegarder_utilisateurs()
         self.sauvegarder_forums()
+
+        publications_a_sauver = []
+        for p in self.publications:
+            pub_data = {
+                "id": p.id,
+                "titre": p.titre,
+                "contenu": p.contenu,
+                "date_creation": p.date_creation,
+                "id_auteur": p.id_auteur,
+                "id_forum": p.id_forum,
+                "commentaires": [
+                    next((c.contenu for c in self.commentaires if c.id == id_commentaire), "")
+                    for id_commentaire in p.commentaires
+                ]
+            }
+            publications_a_sauver.append(pub_data)
+
         with open("data/publications.json", "w", encoding="utf-8") as f:
-            json.dump([p.__dict__ for p in self.publications], f, ensure_ascii=False, indent=2)
+            json.dump(publications_a_sauver, f, ensure_ascii=False, indent=2)
+
         with open("data/commentaires.json", "w", encoding="utf-8") as f:
             json.dump([c.__dict__ for c in self.commentaires], f, ensure_ascii=False, indent=2)
 
@@ -160,6 +177,6 @@ class BD:
 
     def obtenir_forum_par_id(self, id_forum):
         return next((f for f in self.forums if f.id == id_forum), None)
-    
+
     def obtenir_publication_par_id(self, id_publication):
         return next((p for p in self.publications if p.id == id_publication), None)
