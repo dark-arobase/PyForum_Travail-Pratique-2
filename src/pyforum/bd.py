@@ -8,6 +8,7 @@ from datetime import datetime
 
 class BD:
     def __init__(self):
+        # Initialisation des listes d'objets
         self.utilisateurs = []
         self.forums = []
         self.publications = []
@@ -17,7 +18,7 @@ class BD:
             writer = csv.writer(f)
             writer.writerow(["id_utilisateur", "nom_utilisateur", "id_forum", "nom_forum"])
 
-        self.charger_donnees()
+        self.charger_donnees()  # Charger les données depuis les fichiers
 
     def charger_donnees(self):
         try:
@@ -31,7 +32,8 @@ class BD:
                     self.forums.append(forum)
         except:
             self.forums = []
-
+            
+        # Chargement des utilisateurs
         try:
             with open("data/utilisateur.csv", newline="", encoding="utf-8") as f:
                 reader = csv.DictReader(f)
@@ -41,7 +43,8 @@ class BD:
                 ]
         except:
             self.utilisateurs = []
-
+            
+        # Chargement des publications
         try:
             
             with open("data/publications.json", "r", encoding="utf-8") as f:
@@ -60,7 +63,8 @@ class BD:
             self.publications.append(p)
         except:
             self.publications = []
-
+            
+        # Chargement des commentaires
         try:
             with open("data/commentaires.json", "r", encoding="utf-8") as f:
                 self.commentaires = [Commentaire(**x) for x in json.load(f)]
@@ -68,6 +72,7 @@ class BD:
             self.commentaires = []
 
     def sauvegarder_utilisateurs(self):
+        # Sauvegarde des utilisateurs avec la liste de forums rejoints
         with open("data/utilisateur.csv", "w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
             writer.writerow(["id", "username", "courriel", "mot_de_passe", "forums"])
@@ -76,6 +81,7 @@ class BD:
                 writer.writerow([u.id, u.username, u.courriel, u.mot_de_passe, ";".join(noms_forums)])
 
     def sauvegarder_forums(self):
+     # Sauvegarde des forums avec la liste de leurs publications    
         with open("data/forum.csv", "w", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
             writer.writerow(["id", "nom", "description", "publications"])
@@ -83,9 +89,11 @@ class BD:
                 publications_str = ";".join(str(pub_id) for pub_id in forum.publications) 
                 writer.writerow([forum.id, forum.nom, forum.description, publications_str])
     def sauvegarder(self):
+        # Sauvegarde complète de la base de données (CSV et JSON)
         self.sauvegarder_utilisateurs()
         self.sauvegarder_forums()
-
+        
+    # Sauvegarder publications avec texte des commentaires
         publications_a_sauver = []
         for p in self.publications:
             pub_data = {
@@ -104,7 +112,8 @@ class BD:
 
         with open("data/publications.json", "w", encoding="utf-8") as f:
             json.dump(publications_a_sauver, f, ensure_ascii=False, indent=2)
-
+            
+        # Sauvegarder commentaires
         with open("data/commentaires.json", "w", encoding="utf-8") as f:
             json.dump([c.__dict__ for c in self.commentaires], f, ensure_ascii=False, indent=2)
 
