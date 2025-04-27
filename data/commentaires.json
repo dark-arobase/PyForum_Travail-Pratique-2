@@ -22,5 +22,29 @@
     "id_auteur": 4,
     "contenu": "jojo bizzare adventure",
     "id_publication": 1
+  },
+  {
+    "id": 5,
+    "id_auteur": 4,
+    "contenu": "oloobn",
+    "id_publication": 1
+  },
+  {
+    "id": 6,
+    "id_auteur": 4,
+    "contenu": "oloobnoh",
+    "id_publication": 1
+  },
+  {
+    "id": 7,
+    "id_auteur": 4,
+    "contenu": "massyle t ",
+    "id_publication": 1
+  },
+  {
+    "id": 8,
+    "id_auteur": 4,
+    "contenu": "dofgn",
+    "id_publication": 1
   }
 ]
