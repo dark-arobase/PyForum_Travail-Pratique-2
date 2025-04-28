@@ -1,74 +1,20 @@
 [
   {
     "id": 1,
-    "id_auteur": 4,
-    "contenu": "insulte",
+    "id_auteur": 1,
+    "contenu": "vive batman",
     "id_publication": 1
   },
   {
     "id": 2,
-    "id_auteur": 3,
-    "contenu": "sjfdoijaodaodjaoijd",
-    "id_publication": 2
-  },
-  {
-    "id": 3,
-    "id_auteur": 6,
-    "contenu": "yo le tp est trop difficile",
-    "id_publication": 1
-  },
-  {
-    "id": 4,
-    "id_auteur": 4,
-    "contenu": "jojo bizzare adventure",
-    "id_publication": 1
-  },
-  {
-    "id": 5,
-    "id_auteur": 4,
-    "contenu": "oloobn",
-    "id_publication": 1
-  },
-  {
-    "id": 6,
-    "id_auteur": 4,
-    "contenu": "oloobnoh",
-    "id_publication": 1
-  },
-  {
-    "id": 7,
-    "id_auteur": 4,
-    "contenu": "massyle t ",
-    "id_publication": 1
-  },
-  {
-    "id": 8,
-    "id_auteur": 4,
-    "contenu": "dofgn",
-    "id_publication": 1
-  },
-  {
-    "id": 9,
-    "id_auteur": 4,
-    "contenu": "poiijhn",
+    "id_auteur": 1,
+    "contenu": "j'ai toujour raison",
     "id_publication": 1
   },
   {
     "id": 10,
     "id_auteur": 4,
     "contenu": "kisjssjasjsjjs",
-    "id_publication": 2
-  },
-  {
-    "id": 11,
-    "id_auteur": 4,
-    "contenu": "kgfkgkodososol skklasklasl salaslakmd alaslask laslam laslasml klasklks<",
-    "id_publication": 2
-  },
-  {
-    "id": 12,
-    "id_auteur": 4,
-    "contenu": "kgfkgkodososol skklasklasl salaslakmd alaslask laslam laslasml klasklks<",
     "id_publication": 2
   }
 ]
