@@ -1,4 +1,5 @@
 class Forum:
+    #class forum
     def __init__(self, id, nom, description=""):
         self.id = id
         self.nom = nom

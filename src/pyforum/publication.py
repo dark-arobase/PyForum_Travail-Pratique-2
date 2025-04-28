@@ -1,4 +1,5 @@
 class Publication:
+    #class publication
     def __init__(self, id, titre, contenu, date_creation, id_auteur, id_forum):
         self.id = id
         self.titre = titre
