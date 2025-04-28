@@ -4,8 +4,8 @@ Projet de forum minimal en ligne de commande développé pour le cours **420-2C3
 
 ## 👥 Membres de l’équipe
 
-- Mohamed Yasser Ghalim
 - Massyle Chirane
+- Mohamed Yasser Ghalim
 
 ## 📂 Structure
 
