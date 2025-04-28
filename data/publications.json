@@ -1,40 +1,14 @@
 [
   {
     "id": 1,
-    "titre": "batman???",
-    "contenu": "mechant ou gentil???",
-    "date_creation": "2025-04-28T18:03:28.844360",
+    "titre": "batman??",
+    "contenu": "mechant ou gentil?",
+    "date_creation": "2025-04-28T19:06:55.061850",
     "id_auteur": 1,
     "id_forum": 1,
     "commentaires": [
-      "kisjssjasjsjjs"
+      1,
+      2
     ]
-  },
-  {
-    "id": 2,
-    "titre": "nmn",
-    "contenu": "nkko",
-    "date_creation": "2025-04-27T23:51:02.101925",
-    "id_auteur": 4,
-    "id_forum": 1,
-    "commentaires": []
-  },
-  {
-    "id": 3,
-    "titre": "lkodk,",
-    "contenu": "dkmwdm,w",
-    "date_creation": "2025-04-27T23:54:00.024656",
-    "id_auteur": 4,
-    "id_forum": 1,
-    "commentaires": []
-  },
-  {
-    "id": 4,
-    "titre": "pouhb",
-    "contenu": "jghv",
-    "date_creation": "2025-04-28T00:26:49.446186",
-    "id_auteur": 4,
-    "id_forum": 1,
-    "commentaires": []
   }
 ]
