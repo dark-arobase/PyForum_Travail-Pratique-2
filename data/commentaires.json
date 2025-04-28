@@ -58,5 +58,17 @@
     "id_auteur": 4,
     "contenu": "kisjssjasjsjjs",
     "id_publication": 2
+  },
+  {
+    "id": 11,
+    "id_auteur": 4,
+    "contenu": "non",
+    "id_publication": 2
+  },
+  {
+    "id": 12,
+    "id_auteur": 4,
+    "contenu": "bib",
+    "id_publication": 2
   }
 ]

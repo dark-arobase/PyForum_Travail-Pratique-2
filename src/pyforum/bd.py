@@ -120,10 +120,7 @@ class BD:
                 "date_creation": p.date_creation,
                 "id_auteur": p.id_auteur,
                 "id_forum": p.id_forum,
-                "commentaires": [
-                    next((c.contenu for c in self.commentaires if c.id == id_commentaire), "")
-                    for id_commentaire in p.commentaires
-                ]
+                "commentaires": p.commentaires
             }
             publications_a_sauver.append(pub_data)
 
