@@ -15,16 +15,14 @@ class BD:
         self.publications = []
         self.commentaires = []
 
-        racine = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-        self.chemin_data = os.path.join(racine, "data")
-        os.makedirs(self.chemin_data, exist_ok=True)
-
-        rejoindre_path = os.path.join(self.chemin_data, "rejoindre_forum.csv")
-        if not os.path.exists(rejoindre_path):
-            with open(rejoindre_path, "w", newline="") as f:
+        try:
+            with open("data/rejoindre_forum.csv", "r", encoding="utf-8") as f:
+                pass
+        except FileNotFoundError:
+            with open("data/rejoindre_forum.csv", "w", newline="", encoding="utf-8") as f:
                 writer = csv.writer(f)
                 writer.writerow(["id_utilisateur", "nom_utilisateur", "id_forum", "nom_forum"])
-
+       
         self.charger_donnees() # Charger les données depuis les fichiers
 
     def charger_donnees(self):
