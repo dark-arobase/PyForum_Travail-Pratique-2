@@ -7,5 +7,14 @@
     "id_auteur": 4,
     "id_forum": 1,
     "commentaires": []
+  },
+  {
+    "id": 2,
+    "titre": "hgh",
+    "contenu": "hjgj",
+    "date_creation": "2025-04-27T23:42:01.263432",
+    "id_auteur": 4,
+    "id_forum": 1,
+    "commentaires": []
   }
 ]
