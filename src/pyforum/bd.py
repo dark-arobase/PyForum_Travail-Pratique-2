@@ -116,7 +116,8 @@ class BD:
         # Sauvegarder commentaires
         with open("data/commentaires.json", "w", encoding="utf-8") as f:
             json.dump([c.__dict__ for c in self.commentaires], f, ensure_ascii=False, indent=2)
-
+                
+        # Création d'un nouvel utilisateur
     def creer_utilisateur(self, username, courriel, mot_de_passe):
         if username in [u.username for u in self.utilisateurs]:
             print("Nom d'utilisateur déjà pris.")
@@ -127,6 +128,7 @@ class BD:
         self.sauvegarder()
         print(f"Utilisateur créé: {u}")
 
+        # Création d'un nouveau forum
     def creer_forum(self, nom, description=""):
         if nom in [f.nom for f in self.forums]:
             print("Nom du forum déjà pris.")
@@ -137,6 +139,8 @@ class BD:
         self.sauvegarder()
         print(f"Forum créé: {f}")
 
+        
+        # Création d'une nouvelle publication
     def creer_publication(self, titre, contenu, id_auteur, id_forum):
         new_id = len(self.publications) + 1
         date = datetime.now().isoformat()
@@ -150,6 +154,8 @@ class BD:
         self.sauvegarder()
         print(f"Publication créée: {p}")
 
+
+        # Création d'un nouveau commentaire
     def creer_commentaire(self, contenu, id_auteur, id_publication):
         new_id = len(self.commentaires) + 1
         c = Commentaire(new_id, id_auteur, contenu, id_publication)
@@ -164,6 +170,7 @@ class BD:
         print(f"Commentaire ajouté: {c}")
 
 
+        # Permet à un utilisateur de rejoindre un forum
     def joindre_forum(self, username, forum_nom):
         u = self.obtenir_utilisateur_par_nom(username)
         f = self.obtenir_forum_par_nom(forum_nom)
@@ -178,14 +185,18 @@ class BD:
         else:
             print("Utilisateur ou forum introuvable.")
 
+        # Recherche d'un utilisateur par son nom
     def obtenir_utilisateur_par_nom(self, nom_utilisateur):
         return next((u for u in self.utilisateurs if u.username == nom_utilisateur), None)
-
+       
+        # Recherche d'un forum par son nom
     def obtenir_forum_par_nom(self, nom_forum):
         return next((f for f in self.forums if f.nom == nom_forum), None)
 
+        # Recherche d'une publication par son ID
     def obtenir_forum_par_id(self, id_forum):
         return next((f for f in self.forums if f.id == id_forum), None)
-
+    
+        # Recherche d'une publication par son ID
     def obtenir_publication_par_id(self, id_publication):
         return next((p for p in self.publications if p.id == id_publication), None)
