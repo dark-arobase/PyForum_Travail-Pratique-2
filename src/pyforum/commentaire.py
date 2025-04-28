@@ -1,4 +1,5 @@
 class Commentaire:
+    #class commentaire
     def __init__(self, id, id_auteur, contenu, id_publication):
         self.id = id
         self.id_auteur = id_auteur
