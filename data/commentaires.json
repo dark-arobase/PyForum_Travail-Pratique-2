@@ -52,5 +52,11 @@
     "id_auteur": 4,
     "contenu": "poiijhn",
     "id_publication": 1
+  },
+  {
+    "id": 10,
+    "id_auteur": 4,
+    "contenu": "kisjssjasjsjjs",
+    "id_publication": 2
   }
 ]

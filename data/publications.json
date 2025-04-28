@@ -6,7 +6,9 @@
     "date_creation": "2025-04-27T23:48:05.406338",
     "id_auteur": 4,
     "id_forum": 1,
-    "commentaires": []
+    "commentaires": [
+      "kisjssjasjsjjs"
+    ]
   },
   {
     "id": 2,
@@ -22,6 +24,15 @@
     "titre": "lkodk,",
     "contenu": "dkmwdm,w",
     "date_creation": "2025-04-27T23:54:00.024656",
+    "id_auteur": 4,
+    "id_forum": 1,
+    "commentaires": []
+  },
+  {
+    "id": 4,
+    "titre": "pouhb",
+    "contenu": "jghv",
+    "date_creation": "2025-04-28T00:26:49.446186",
     "id_auteur": 4,
     "id_forum": 1,
     "commentaires": []

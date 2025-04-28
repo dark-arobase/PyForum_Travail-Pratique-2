@@ -25,6 +25,7 @@ class BD:
         self.charger_donnees() # Charger les données depuis les fichiers
 
     def charger_donnees(self):
+        # 1. Charger d'abord les forums
         try:
             with open("data/forum.csv", newline="", encoding="utf-8") as f:
                 reader = csv.DictReader(f)
@@ -36,39 +37,51 @@ class BD:
                     self.forums.append(forum)
         except:
             self.forums = []
-            
-        # Chargement des utilisateurs
+
+        # 2. Charger ensuite les utilisateurs
         try:
             with open("data/utilisateur.csv", newline="", encoding="utf-8") as f:
                 reader = csv.DictReader(f)
-                self.utilisateurs = [
-                    Utilisateur(int(row["id"]), row["username"], row["courriel"], row["mot_de_passe"], row["forums"].split(";") if row["forums"] else [])
-                    for row in reader
-                ]
+                self.utilisateurs = []
+                for row in reader:
+                    forums_ids = []
+                    if row["forums"]:
+                        noms_forums = row["forums"].split(";")
+                        for nom in noms_forums:
+                            forum = self.obtenir_forum_par_nom(nom.strip())
+                            if forum:
+                                forums_ids.append(forum.id)
+                    utilisateur = Utilisateur(
+                        int(row["id"]),
+                        row["username"],
+                        row["courriel"],
+                        row["mot_de_passe"],
+                        forums_ids
+                    )
+                    self.utilisateurs.append(utilisateur)
         except:
             self.utilisateurs = []
-            
-        # Chargement des publications
+
+        # 3. Charger les publications
         try:
-            
             with open("data/publications.json", "r", encoding="utf-8") as f:
-                    publications_data = json.load(f)
-                    self.publications = []
-            for pub_data in publications_data:
-                     p = Publication(
-                    pub_data["id"],
-                    pub_data["titre"],
-                    pub_data["contenu"],
-                    pub_data["date_creation"],
-                    pub_data["id_auteur"],
-                    pub_data["id_forum"]
-            )
-            p.commentaires = pub_data.get("commentaires", [])
-            self.publications.append(p)
+                publications_data = json.load(f)
+                self.publications = []
+                for pub_data in publications_data:
+                    p = Publication(
+                        pub_data["id"],
+                        pub_data["titre"],
+                        pub_data["contenu"],
+                        pub_data["date_creation"],
+                        pub_data["id_auteur"],
+                        pub_data["id_forum"]
+                    )
+                    p.commentaires = pub_data.get("commentaires", [])
+                    self.publications.append(p)
         except:
             self.publications = []
-            
-        # Chargement des commentaires
+
+        # 4. Charger les commentaires
         try:
             with open("data/commentaires.json", "r", encoding="utf-8") as f:
                 self.commentaires = [Commentaire(**x) for x in json.load(f)]
