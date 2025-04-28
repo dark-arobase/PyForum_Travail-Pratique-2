@@ -9,7 +9,7 @@ class Utilisateur:
     # Méthode spéciale pour afficher une représentation lisible de l'objet
     def __str__(self):
         return f"Utilisateur({self.id}, {self.username})"
-     # Méthode pour permettre à l'utilisateur de rejoindre un forum
+    # Méthode pour permettre à l'utilisateur de rejoindre un forum
     def rejoindre_forum(self, forum_id):
         if forum_id not in self.forums:
             self.forums.append(forum_id)
