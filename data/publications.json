@@ -1,18 +1,27 @@
 [
   {
     "id": 2,
-    "titre": "hgh",
-    "contenu": "hjgj",
-    "date_creation": "2025-04-27T23:42:01.263432",
+    "titre": "pojn",
+    "contenu": "ij",
+    "date_creation": "2025-04-27T23:48:05.406338",
     "id_auteur": 4,
     "id_forum": 1,
     "commentaires": []
   },
   {
     "id": 2,
-    "titre": "pojn",
-    "contenu": "ij",
-    "date_creation": "2025-04-27T23:48:05.406338",
+    "titre": "nmn",
+    "contenu": "nkko",
+    "date_creation": "2025-04-27T23:51:02.101925",
+    "id_auteur": 4,
+    "id_forum": 1,
+    "commentaires": []
+  },
+  {
+    "id": 3,
+    "titre": "lkodk,",
+    "contenu": "dkmwdm,w",
+    "date_creation": "2025-04-27T23:54:00.024656",
     "id_auteur": 4,
     "id_forum": 1,
     "commentaires": []
