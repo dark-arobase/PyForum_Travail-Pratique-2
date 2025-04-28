@@ -7,7 +7,9 @@
     "id_auteur": 4,
     "id_forum": 1,
     "commentaires": [
-      "kisjssjasjsjjs"
+      "kisjssjasjsjjs",
+      11,
+      12
     ]
   },
   {
@@ -35,6 +37,24 @@
     "date_creation": "2025-04-28T00:26:49.446186",
     "id_auteur": 4,
     "id_forum": 1,
+    "commentaires": []
+  },
+  {
+    "id": 5,
+    "titre": "m",
+    "contenu": "m",
+    "date_creation": "2025-04-28T12:44:03.179057",
+    "id_auteur": 4,
+    "id_forum": 7,
+    "commentaires": []
+  },
+  {
+    "id": 6,
+    "titre": "asdf",
+    "contenu": "plasma",
+    "date_creation": "2025-04-28T12:49:23.572448",
+    "id_auteur": 4,
+    "id_forum": 2,
     "commentaires": []
   }
 ]
