@@ -14,11 +14,15 @@ class BD:
         self.publications = []
         self.commentaires = []
 
-        with open("data/rejoindre_forum.csv", "w", newline="") as f:
-            writer = csv.writer(f)
-            writer.writerow(["id_utilisateur", "nom_utilisateur", "id_forum", "nom_forum"])
+        try:
+            with open("data/rejoindre_forum.csv", "r", encoding="utf-8") as f:
+                pass
+        except FileNotFoundError:
+            with open("data/rejoindre_forum.csv", "w", newline="", encoding="utf-8") as f:
+                writer = csv.writer(f)
+                writer.writerow(["id_utilisateur", "nom_utilisateur", "id_forum", "nom_forum"])
 
-        self.charger_donnees()  # Charger les données depuis les fichiers
+        self.charger_donnees() # Charger les données depuis les fichiers
 
     def charger_donnees(self):
         try:
