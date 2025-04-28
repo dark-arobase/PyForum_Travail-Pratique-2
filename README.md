@@ -13,7 +13,7 @@ Projet de forum minimal en ligne de commande développé pour le cours **420-2C3
 - `forum.py` : classe `Forum`
 - `publication.py` : classe `Publication`
 - `commentaire.py` : classe `Commentaire`
-- `bd.py` : gestion des données (JSON)
+- `bd.py` : gestion des données (JSON et CSV)
 - `mvp.py` : boucle interactive REPL
 - `__main__.py` : permet d'exécuter le projet avec `python -m pyforum`
 
@@ -28,13 +28,13 @@ python -m pyforum
 
 ## 📁 Données
 
-- Les données sont enregistrées dans des fichiers JSON dans le dossier `data/`.
+- Les données sont enregistrées dans des fichiers JSON et CSV dans le dossier `data/`.
 
 ## 🛠 Technologies
 
 - Python 3.10+
-- Format JSON pour la persistance
-
+- Format JSON et CSV pour la persistance
+- Programmation orientée objet (POO)
 ## 📅 Date de remise
 
 **28 avril 2025 à 23h59**
