@@ -1,4 +1,3 @@
-import os
 import json
 import csv
 from utilisateur import Utilisateur
